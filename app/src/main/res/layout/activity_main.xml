@@ -7,13 +7,14 @@
     android:background="@drawable/background"
     android:scrollbarThumbHorizontal="@color/teal_200">
 
-    <TextView
+    <EditText
         android:id="@+id/inputEmail"
         android:layout_width="320dp"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="129dp"
         android:layout_marginEnd="32dp"
+        android:hint="    Nhập tài khoản"
         android:background="@drawable/vien_bg"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -24,7 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
-    <TextView
+    <EditText
         android:id="@+id/inputPassword"
         android:layout_width="320dp"
         android:layout_height="45dp"
@@ -32,7 +33,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/vien_bg"
-        android:hint=" ********"
+        android:hint="Nhập mật khẩu "
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingRight="10dp"
@@ -52,11 +53,10 @@
         android:layout_marginTop="177dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="91dp"
-        android:background="@color/white"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/design_default_color_primary_variant"
         android:contentDescription="@string/app_name"
         android:text="Login"
-        android:textColor="#1B1A1A"
+        android:textColor="@color/white"
         android:textColorHighlight="#E6E2E2"
         android:textColorLink="#F6EFEF"
         app:iconTint="@color/black"
@@ -75,7 +75,7 @@
         android:layout_marginEnd="134dp"
         android:layout_marginBottom="129dp"
         android:text="LOGIN"
-        android:textColor="#171515"
+        android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/inputEmail"
