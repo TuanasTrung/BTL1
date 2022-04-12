@@ -112,6 +112,7 @@
             android:textColor="#100F0F"
             android:textSize="20sp"
             tools:targetApi="m" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -140,18 +141,27 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="459dp"
         android:layout_height="137dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="632dp"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="631dp">
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mua"
+            tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="334dp"
-            tools:layout_editor_absoluteY="73dp"
-            tools:ignore="MissingConstraints" />
+            tools:layout_editor_absoluteY="73dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quay lại"
+            tools:layout_editor_absoluteX="46dp"
+            tools:layout_editor_absoluteY="73dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
