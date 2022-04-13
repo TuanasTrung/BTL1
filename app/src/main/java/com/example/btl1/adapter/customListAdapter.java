@@ -1,4 +1,4 @@
-package com.example.btl1;
+package com.example.btl1.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.btl1.R;
+import com.example.btl1.adapter.app;
+
 import java.util.List;
 
 public class customListAdapter extends BaseAdapter {

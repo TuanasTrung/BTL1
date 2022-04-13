@@ -1,4 +1,4 @@
-package com.example.btl1;
+package com.example.btl1.adapter;
 
 public class app {
     private String appName;

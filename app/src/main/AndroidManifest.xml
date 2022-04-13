@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BTL1">
         <activity
-            android:name=".home"
+            android:name=".adapter.home"
             android:exported="false" />
         <activity
             android:name=".register"

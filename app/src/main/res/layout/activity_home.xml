@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home"
+    tools:context=".adapter.home"
     android:orientation="vertical">
 
     <!---Top bar -->
@@ -16,6 +16,7 @@
 
 
         <ImageView
+            android:id="@+id/profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
