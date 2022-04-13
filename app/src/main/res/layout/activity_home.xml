@@ -14,6 +14,7 @@
         android:padding="@dimen/medium"
         android:paddingTop="@dimen/medium">
 
+
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
