@@ -20,7 +20,8 @@ public class view_item extends AppCompatActivity {
     TextView review_appname;
     TextView review_appprice;
 
-    String appName, appImg, appDes, appPrice;
+    String appName, appDes, appPrice;
+    int appImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,18 @@ public class view_item extends AppCompatActivity {
         Intent i = getIntent();
 
         appName = i.getStringExtra("appName");
-        appImg = i.getStringExtra("appImg");
+        appImg = i.getIntExtra("appImg",R.mipmap.ab);
         appDes = i.getStringExtra("appDes");
         appPrice = i.getStringExtra("appPrice");
+
+        review_appname = findViewById(R.id.review_appname);
+        review_appdes = findViewById(R.id.review_appdes);
+        review_img = findViewById(R.id.review_img);
+        review_appprice = findViewById(R.id.review_price);
+
+        review_appname.setText(appName);
+        review_appprice.setText(appPrice);
+        review_appdes.setText(appDes);
+        review_img.setImageResource(appImg);
     }
 }

@@ -1,6 +1,9 @@
 package com.example.btl1.adapter;
+import androidx.lifecycle.GenericLifecycleObserver;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.renderscript.Allocation;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,69 +12,57 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.btl1.R;
 import com.example.btl1.adapter.app;
 
 import java.util.List;
 
-public class customListAdapter extends BaseAdapter {
-    private List<app> listData;
-    private LayoutInflater layoutInflater;
-    private Context context;
+public class customListAdapter extends RecyclerView.Adapter<customListAdapter.customListAdapterHolder>{
 
-    public customListAdapter(Context aContext, List<app>listData){
-        this.context = aContext;
-        this.listData = listData;
-        layoutInflater = LayoutInflater.from(aContext);
+    private Context aContext;
+    private List<app> ListData;
+
+    public customListAdapter(Context aContext, List<app> listData) {
+        this.aContext = aContext;
+        ListData = listData;
+    }
+
+    @NonNull
+    @Override
+    public customListAdapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(aContext);
+        View appView = inflater.inflate(R.layout.home_list,parent,false);
+        customListAdapterHolder viewHolder = new customListAdapterHolder(appView);
+        return viewHolder;
     }
 
     @Override
-    public int getCount() {
-        return listData.size();
+    public void onBindViewHolder(@NonNull customListAdapterHolder holder, int position) {
+        holder.appImgView.setBackgroundResource(ListData.get(position).getAppImg());
+        holder.appNameView.setText(ListData.get(position).getAppName());
+        holder.appDesView.setText(ListData.get(position).getAppDes());
+        holder.appPriceView.setText(ListData.get(position).getAppPrice());
+
     }
 
     @Override
-    public Object getItem(int position) {
-        return listData.get(position);
+    public int getItemCount() {
+        return ListData.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public static class customListAdapterHolder extends RecyclerView.ViewHolder{
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null){
-            convertView = layoutInflater.inflate(R.layout.home_list, null);
-            holder = new ViewHolder();
-            holder.appImgView = (ImageView) convertView.findViewById(R.id.appImg);
-            holder.appNameView = (TextView) convertView.findViewById(R.id.appName);
-            holder.appDesView = (TextView) convertView.findViewById(R.id.appDes);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+        private ImageView appImgView;
+        private TextView appNameView, appDesView, appPriceView;
+
+        public customListAdapterHolder(@NonNull View itemView) {
+            super(itemView);
+            appImgView = itemView.findViewById(R.id.appImg);
+            appNameView = itemView.findViewById(R.id.appName);
+            appDesView = itemView.findViewById(R.id.appDes);
+            appPriceView = itemView.findViewById(R.id.appPrice);
         }
-
-        app app = this.listData.get(position);
-        holder.appNameView.setText(app.getAppName());
-        holder.appDesView.setText("Descreption: " + app.getAppDes());
-        int imageId = this.getMipmapResIdByName(app.getAppImg());
-        holder.appImgView.setImageResource(imageId);
-        return convertView;
-    }
-
-    public int getMipmapResIdByName(String resName){
-        String pkgName = context.getPackageName();
-        int resID = context.getResources().getIdentifier(resName, "mipmap", pkgName);
-        Log.i("customListView","Res Name:" + resName+"==> Res ID = " + resID);
-        return resID;
-    }
-
-    static class ViewHolder {
-        ImageView appImgView;
-        TextView appNameView;
-        TextView appDesView;
     }
 }

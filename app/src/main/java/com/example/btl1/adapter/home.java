@@ -1,6 +1,8 @@
 package com.example.btl1.adapter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,51 +21,37 @@ import java.util.List;
 
 public class home extends AppCompatActivity {
 
+    private List<app> ListData;
+    private RecyclerView customListApdapter;
+    private customListAdapter CustomAdapter;
+
+    ImageView profile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ImageView profile;
-
-        List<app> image_detail = getListData();
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new customListAdapter(this, image_detail));
-
         profile = findViewById(R.id.profile);
-
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent profile = new Intent(home.this, user.class);
-                startActivity(profile);
-                finish();
+                Intent intent3 = new Intent(home.this, user.class);
+                startActivity(intent3);
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Object o = listView.getItemAtPosition(position);
-                app app = (app) o;
-                Toast.makeText(home.this,"Selected:" + " " + app, Toast.LENGTH_LONG).show();
-
-                Intent intent2 = new Intent(home.this,view_item.class);
-                startActivity(intent2);
-            }
-        });
+        customListApdapter = findViewById(R.id.listView);
+        ListData = new ArrayList<app>();
+        home_list();
+        CustomAdapter = new customListAdapter(this,ListData);
+        customListApdapter.setAdapter(CustomAdapter);
+        customListApdapter.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private List<app> getListData(){
-        List<app> list = new ArrayList<app>();
-        app ab = new app ("Angry Bird","ab", "Hành động, trẻ con, 12+");
-        app ac = new app ("Assasin's creed", "ac", "Hành động, phiêu lưu, 16+");
-        app ms = new app ("Maple story", "ms","Nhập vai, phiêu lưu, 12+");
-
-        list.add(ab);
-        list.add(ac);
-        list.add(ms);
-
-        return list;
+    private void home_list() {
+        ListData.add(new app("Angry bird",R.mipmap.ab, "Bắn súng, động vật, 12+", "$10"));
+        ListData.add(new app("Assasin's Creeb",R.mipmap.ac, "Đánh nhau, nhập vai, 16+", "$30"));
+        ListData.add(new app("Maple story",R.mipmap.ms, "Đánh nhau, nhập vai, 12+", "$15"));
     }
 }
