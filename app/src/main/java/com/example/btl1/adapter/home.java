@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.btl1.OnItemClickListener;
 import com.example.btl1.R;
 import com.example.btl1.user;
 import com.example.btl1.view_item;
@@ -44,7 +45,12 @@ public class home extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvData.setLayoutManager(linearLayoutManager);
 
-        appAdapter = new AppAdapter(this,getListApp());
+        appAdapter = new AppAdapter(getListApp(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(app App) {
+                onClickGoToDetail(App);
+            }
+        });
         rcvData.setAdapter(appAdapter);
     }
 
@@ -56,4 +62,14 @@ public class home extends AppCompatActivity {
 
         return list;
     }
+
+
+    private void onClickGoToDetail(app App){
+        Intent i = new Intent(this,view_item.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_app",App);
+        i.putExtras(bundle);
+        startActivity(i);
+    }
+
 }

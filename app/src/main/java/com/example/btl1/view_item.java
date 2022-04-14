@@ -18,10 +18,6 @@ public class view_item extends AppCompatActivity {
     Button btnmua;
     ImageView back;
     ImageView profile;
-    ImageView review_img;
-    TextView review_appdes;
-    TextView review_appname;
-    TextView review_appprice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +59,17 @@ public class view_item extends AppCompatActivity {
         if(bundle == null){
             return;
         }
-        app app = (app) bundle.get("object_app");
 
-        review_appname = findViewById(R.id.review_appname);
-        review_appdes = findViewById(R.id.review_appdes);
-        review_appprice = findViewById(R.id.review_price);
-        review_img = findViewById(R.id.appImg);
+        app App = (app) bundle.get("object_app");
 
-        review_appname.setText(app.getAppName());
-        review_appprice.setText(app.getAppPrice());
-        review_appdes.setText(app.getAppDes());
-        review_img.setImageResource(app.getAppImg());
+        TextView review_appname = findViewById(R.id.review_appname);
+        TextView review_appdes = findViewById(R.id.review_appdes);
+        TextView review_appprice = findViewById(R.id.review_price);
+        ImageView review_img = findViewById(R.id.appImg);
+
+        review_appname.setText(App.getAppName());
+        review_appprice.setText(App.getAppPrice());
+        review_appdes.setText(App.getAppDes());
+        review_img.setImageResource(App.getAppImg());
     }
 }

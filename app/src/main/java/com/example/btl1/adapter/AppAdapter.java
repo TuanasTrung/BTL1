@@ -1,6 +1,7 @@
 package com.example.btl1.adapter;
 import androidx.lifecycle.GenericLifecycleObserver;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.btl1.OnItemClickListener;
 import com.example.btl1.R;
 import com.example.btl1.adapter.app;
 import com.example.btl1.view_item;
@@ -28,11 +30,11 @@ import java.util.List;
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
     private List<app> mListApp;
-    private Context context;
+    private OnItemClickListener onItemClickListener;
 
-    public AppAdapter(Context context, List<app> mListApp) {
-        this.context = context;
+    public AppAdapter(List<app> mListApp, OnItemClickListener listener) {
         this.mListApp = mListApp;
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -44,30 +46,23 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AppViewHolder holder, int position) {
-        final app app = mListApp.get(position);
-        if(app == null){
+        final app App = mListApp.get(position);
+        if(App == null){
             return;
         }
-        holder.appImg.setImageResource(app.getAppImg());
-        holder.appName.setText(app.getAppName());
-        holder.appDes.setText(app.getAppDes());
-        holder.appPrice.setText(app.getAppPrice());
+        holder.appImg.setImageResource(App.getAppImg());
+        holder.appName.setText(App.getAppName());
+        holder.appDes.setText(App.getAppDes());
+        holder.appPrice.setText(App.getAppPrice());
         
-        holder.layoutApp.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickGoToDetail(app);
+                onItemClickListener.onItemClick(App);
             }
         });
     }
 
-    private void onClickGoToDetail(app app){
-        Intent intent = new Intent(context, view_item.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("object_app", app);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-    }
     @Override
     public int getItemCount() {
         if (mListApp!= null){
