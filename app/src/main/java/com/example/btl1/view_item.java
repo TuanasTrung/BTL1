@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.btl1.adapter.app;
 import com.example.btl1.adapter.home;
 
 public class view_item extends AppCompatActivity {
@@ -21,9 +22,6 @@ public class view_item extends AppCompatActivity {
     TextView review_appdes;
     TextView review_appname;
     TextView review_appprice;
-
-    String appName, appDes, appPrice;
-    int bgImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,21 +59,20 @@ public class view_item extends AppCompatActivity {
             }
         });
 
-        Intent i = getIntent();
-
-        appName = i.getStringExtra("appName");
-        bgImg = i.getIntExtra("appImg",R.drawable.ab1);
-        appDes = i.getStringExtra("appDes");
-        appPrice = i.getStringExtra("appPrice");
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null){
+            return;
+        }
+        app app = (app) bundle.get("object_app");
 
         review_appname = findViewById(R.id.review_appname);
         review_appdes = findViewById(R.id.review_appdes);
-        review_img = findViewById(R.id.review_img);
         review_appprice = findViewById(R.id.review_price);
+        review_img = findViewById(R.id.appImg);
 
-        review_appname.setText(appName);
-        review_appprice.setText(appPrice);
-        review_appdes.setText(appDes);
-        review_img.setImageResource(bgImg);
+        review_appname.setText(app.getAppName());
+        review_appprice.setText(app.getAppPrice());
+        review_appdes.setText(app.getAppDes());
+        review_img.setImageResource(app.getAppImg());
     }
 }
