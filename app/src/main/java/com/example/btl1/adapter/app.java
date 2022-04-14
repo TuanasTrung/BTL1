@@ -2,27 +2,19 @@ package com.example.btl1.adapter;
 
 import android.graphics.drawable.Drawable;
 
-public class app {
-    private String appName;
+import java.io.Serializable;
+
+public class app implements Serializable {
     private int appImg;
+    private String appName;
     private String appDes;
     private String appPrice;
-    private int bgImg;
 
-    public app(String appName, int appImg, String appDes, String appPrice, int bgImg) {
+    public app(String appName, int appImg, String appDes, String appPrice) {
         this.appName = appName;
         this.appImg = appImg;
         this.appDes = appDes;
         this.appPrice = appPrice;
-        this.bgImg = bgImg;
-    }
-
-    public int getBgImg() {
-        return bgImg;
-    }
-
-    public void setBgImg(int bgImg) {
-        this.bgImg = bgImg;
     }
 
     public String getAppName() {

@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.btl1.OnItemClickListener;
 import com.example.btl1.R;
 import com.example.btl1.user;
 import com.example.btl1.view_item;
@@ -21,10 +23,8 @@ import java.util.List;
 
 public class home extends AppCompatActivity {
 
-    private List<app> ListData;
-    private RecyclerView customListApdapter;
-    private customListAdapter CustomAdapter;
-
+    private RecyclerView rcvData;
+    private AppAdapter appAdapter;
     ImageView profile;
 
     @Override
@@ -36,22 +36,40 @@ public class home extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(home.this, user.class);
-                startActivity(intent3);
+                Intent i = new Intent(home.this, user.class);
+                startActivity(i);
             }
         });
 
-        customListApdapter = findViewById(R.id.listView);
-        ListData = new ArrayList<app>();
-        home_list();
-        CustomAdapter = new customListAdapter(this,ListData);
-        customListApdapter.setAdapter(CustomAdapter);
-        customListApdapter.setLayoutManager(new LinearLayoutManager(this));
+        rcvData = findViewById(R.id.appRcv);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvData.setLayoutManager(linearLayoutManager);
+
+        appAdapter = new AppAdapter(getListApp(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(app App) {
+                onClickGoToDetail(App);
+            }
+        });
+        rcvData.setAdapter(appAdapter);
     }
 
-    private void home_list() {
-        ListData.add(new app("Angry bird",R.mipmap.ab, "Bắn súng, động vật, 12+", "$10", R.drawable.ab1));
-        ListData.add(new app("Assasin's Creeb",R.mipmap.ac, "Đánh nhau, nhập vai, 16+", "$30", R.drawable.ac1));
-        ListData.add(new app("Maple story",R.mipmap.ms, "Đánh nhau, nhập vai, 12+", "$15", R.drawable.ms1));
+    private List<app> getListApp() {
+        List<app> list = new ArrayList<>();
+        list.add(new app("Angry Bird",R.mipmap.ab,"Trò chơi trẻ em, bắn súng, 12+","$10"));
+        list.add(new app("Assasin's Creeb",R.mipmap.ac,"Nhập vai, đánh nhau, 17+","$20"));
+        list.add(new app("Maple Story",R.mipmap.ms,"Nhập vai, trò chơi trực tuyến, 12+","$15"));
+
+        return list;
     }
+
+
+    private void onClickGoToDetail(app App){
+        Intent i = new Intent(this,view_item.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_app",App);
+        i.putExtras(bundle);
+        startActivity(i);
+    }
+
 }
