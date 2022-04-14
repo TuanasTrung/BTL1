@@ -7,6 +7,23 @@ public class app {
     private int appImg;
     private String appDes;
     private String appPrice;
+    private int bgImg;
+
+    public app(String appName, int appImg, String appDes, String appPrice, int bgImg) {
+        this.appName = appName;
+        this.appImg = appImg;
+        this.appDes = appDes;
+        this.appPrice = appPrice;
+        this.bgImg = bgImg;
+    }
+
+    public int getBgImg() {
+        return bgImg;
+    }
+
+    public void setBgImg(int bgImg) {
+        this.bgImg = bgImg;
+    }
 
     public String getAppName() {
         return appName;
@@ -40,10 +57,4 @@ public class app {
         this.appPrice = appPrice;
     }
 
-    public app(String appName, int appImg, String appDes, String appPrice) {
-        this.appName = appName;
-        this.appImg = appImg;
-        this.appDes = appDes;
-        this.appPrice = appPrice;
-    }
 }

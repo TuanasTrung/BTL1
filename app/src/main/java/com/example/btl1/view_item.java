@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.example.btl1.adapter.home;
 
 public class view_item extends AppCompatActivity {
 
+    Button btnmua;
     ImageView back;
     ImageView profile;
     ImageView review_img;
@@ -21,7 +23,7 @@ public class view_item extends AppCompatActivity {
     TextView review_appprice;
 
     String appName, appDes, appPrice;
-    int appImg;
+    int bgImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class view_item extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         profile = findViewById(R.id.profile);
+        btnmua = findViewById(R.id.btnmua);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,10 +52,19 @@ public class view_item extends AppCompatActivity {
             }
         });
 
+        btnmua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent5 = new Intent(view_item.this, giohang.class);
+                startActivity(intent5);
+                finish();
+            }
+        });
+
         Intent i = getIntent();
 
         appName = i.getStringExtra("appName");
-        appImg = i.getIntExtra("appImg",R.mipmap.ab);
+        bgImg = i.getIntExtra("appImg",R.drawable.ab1);
         appDes = i.getStringExtra("appDes");
         appPrice = i.getStringExtra("appPrice");
 
@@ -64,6 +76,6 @@ public class view_item extends AppCompatActivity {
         review_appname.setText(appName);
         review_appprice.setText(appPrice);
         review_appdes.setText(appDes);
-        review_img.setImageResource(appImg);
+        review_img.setImageResource(bgImg);
     }
 }

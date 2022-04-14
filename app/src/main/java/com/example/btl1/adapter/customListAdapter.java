@@ -2,7 +2,9 @@ package com.example.btl1.adapter;
 import androidx.lifecycle.GenericLifecycleObserver;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.renderscript.Allocation;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.example.btl1.R;
 import com.example.btl1.adapter.app;
+import com.example.btl1.view_item;
 
 import java.util.List;
 
@@ -40,10 +43,22 @@ public class customListAdapter extends RecyclerView.Adapter<customListAdapter.cu
 
     @Override
     public void onBindViewHolder(@NonNull customListAdapterHolder holder, int position) {
-        holder.appImgView.setBackgroundResource(ListData.get(position).getAppImg());
+        holder.appImgView.setBackgroundResource( ListData.get(position).getAppImg());
         holder.appNameView.setText(ListData.get(position).getAppName());
         holder.appDesView.setText(ListData.get(position).getAppDes());
         holder.appPriceView.setText(ListData.get(position).getAppPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(aContext, view_item.class);
+                i.putExtra("appName",ListData.get(position).getAppName());
+                i.putExtra("bgImg",ListData.get(position).getBgImg());
+                i.putExtra("appDes",ListData.get(position).getAppDes());
+                i.putExtra("appPrice",ListData.get(position).getAppPrice());
+                aContext.startActivity(i);
+            }
+        });
 
     }
 

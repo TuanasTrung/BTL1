@@ -50,8 +50,8 @@ public class home extends AppCompatActivity {
     }
 
     private void home_list() {
-        ListData.add(new app("Angry bird",R.mipmap.ab, "Bắn súng, động vật, 12+", "$10"));
-        ListData.add(new app("Assasin's Creeb",R.mipmap.ac, "Đánh nhau, nhập vai, 16+", "$30"));
-        ListData.add(new app("Maple story",R.mipmap.ms, "Đánh nhau, nhập vai, 12+", "$15"));
+        ListData.add(new app("Angry bird",R.mipmap.ab, "Bắn súng, động vật, 12+", "$10", R.drawable.ab1));
+        ListData.add(new app("Assasin's Creeb",R.mipmap.ac, "Đánh nhau, nhập vai, 16+", "$30", R.drawable.ac1));
+        ListData.add(new app("Maple story",R.mipmap.ms, "Đánh nhau, nhập vai, 12+", "$15", R.drawable.ms1));
     }
 }
