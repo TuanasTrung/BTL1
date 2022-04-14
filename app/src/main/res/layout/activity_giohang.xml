@@ -7,6 +7,7 @@
     tools:context=".giohang">
 
     <TextView
+<<<<<<< HEAD
     app:laynut_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     android:textStyles="bold"
@@ -17,6 +18,18 @@
     android:textsize="18sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
+=======
+        app:laynut_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyles="bold"
+        android:visibility="gone"
+        android:id="@+id/txtgiohang"
+        android:text="G1ó hàng"
+        android:gravity="center"
+        android:textsize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+>>>>>>> a0d93ca8960998e0e7eb4bcbb2e2a6bd08754501
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

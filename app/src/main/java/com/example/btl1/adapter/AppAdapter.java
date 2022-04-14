@@ -55,7 +55,7 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.AppViewHolder> {
         holder.appDes.setText(App.getAppDes());
         holder.appPrice.setText(App.getAppPrice());
         
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.layoutApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onItemClickListener.onItemClick(App);
